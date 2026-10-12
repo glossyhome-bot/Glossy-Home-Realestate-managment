@@ -1,4 +1,4 @@
-# Glossy Home — Mobile Editable Starter Bundle
+# Glossy Home — Real Estate Management Platform
 
 ## Included
 - `web-app/index.html`: mobile-ready frontend based on the supplied Property Rent Manager HTML, now with Admin Login and cloud sync client.
