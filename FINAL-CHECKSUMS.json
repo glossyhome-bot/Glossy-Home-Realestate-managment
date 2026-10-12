@@ -1,0 +1,26 @@
+{
+  "generated_from": "GlossyHome-Mobile-Editable-v3 starter",
+  "user_logo": "logo.png",
+  "checksums": {
+    "web-app/index.html": {
+      "sha256": "84f6be80522a32930752426669db30ee3cff6743eab1ac494c42e07284ea2d78",
+      "bytes": 158742
+    },
+    "cloudflare-worker/public/index.html": {
+      "sha256": "84f6be80522a32930752426669db30ee3cff6743eab1ac494c42e07284ea2d78",
+      "bytes": 158742
+    },
+    "cloudflare-worker/src/index.ts": {
+      "sha256": "5d91b7cec4d6d0c94309f73bcec5f6004ed26bc6bf62f22fafe770ca84285cfb",
+      "bytes": 7423
+    },
+    "cloudflare-worker/public/logo.png": {
+      "sha256": "1367306bed4267575eee27b44053307e8a2d1aa7fc79ecdd6e9eb5e68e2cb5b6",
+      "bytes": 2518128
+    },
+    "neon-schema.sql": {
+      "sha256": "621622b755f4dde8ba6900bf9923de148c5615a09b11b239b661f3c92c87c04b",
+      "bytes": 245
+    }
+  }
+}
