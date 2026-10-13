@@ -1,26 +1,30 @@
 {
-  "generated_from": "GlossyHome-Mobile-Editable-v3 starter",
-  "user_logo": "logo.png",
-  "checksums": {
-    "web-app/index.html": {
-      "sha256": "84f6be80522a32930752426669db30ee3cff6743eab1ac494c42e07284ea2d78",
-      "bytes": 158742
-    },
-    "cloudflare-worker/public/index.html": {
-      "sha256": "84f6be80522a32930752426669db30ee3cff6743eab1ac494c42e07284ea2d78",
-      "bytes": 158742
-    },
-    "cloudflare-worker/src/index.ts": {
-      "sha256": "5d91b7cec4d6d0c94309f73bcec5f6004ed26bc6bf62f22fafe770ca84285cfb",
-      "bytes": 7423
-    },
-    "cloudflare-worker/public/logo.png": {
-      "sha256": "1367306bed4267575eee27b44053307e8a2d1aa7fc79ecdd6e9eb5e68e2cb5b6",
-      "bytes": 2518128
-    },
-    "neon-schema.sql": {
-      "sha256": "621622b755f4dde8ba6900bf9923de148c5615a09b11b239b661f3c92c87c04b",
-      "bytes": 245
-    }
-  }
+  "DEPLOY-CHECKLIST-BN.md": "3702d8204d88e210d5054f59c6ec715774bf004a4b317c526da95080fa5f63ac",
+  "README.md": "1137b52419ba70cecd8f584cbbdf22b83dfff6f5e97dd2be4da6dd4635464ad2",
+  "SAFETY-NOTES.md": "4efc1d2b71b9b9ba3ef4651b53d9222300a86f52da28d8491740a60ec0348436",
+  "START-HERE-BN.md": "e77239154a1deb6c696625801f96ff35cfef1960f8c7ad3b1c735be71ba3cddb",
+  "VERSION-3-UI-NOTES.md": "2f8535376d9aaf2d88c67c3f04179864c5bedeb5e0c508f08b58b2a44d1071c7",
+  "neon-schema.sql": "621622b755f4dde8ba6900bf9923de148c5615a09b11b239b661f3c92c87c04b",
+  "FORMULAS-AND-FEATURES.md": "bdd4e20f9b04cc10ce45c1bf759854251e57375807e0ba7e9ad51f1fbae76973",
+  "cloudflare-worker/package.json": "2cc100ce90dcc6f584d957f31776a4fa5869fb8cea4a3ec6151b1e97f746fca8",
+  "cloudflare-worker/wrangler.toml": "28a76fd1ab60645711780bb1c2609cdb632f7aece777456d3ea90373f50d0e5e",
+  "cloudflare-worker/tsconfig.json": "9b55073a7c7415b0ecebea001d9212d66d525957f5cf0ace4f67b537b3a51c20",
+  "cloudflare-worker/.dev.vars.example": "a2c5cfa1ba936066cfea4be82a843eb769e2e158651829f042e5fc3aebf46ad3",
+  "cloudflare-worker/.gitignore": "9625ccb676d8fe21d4413d18dc31ec0854612262c390b08f0e08787f324a6b10",
+  "web-app/logo.png": "1367306bed4267575eee27b44053307e8a2d1aa7fc79ecdd6e9eb5e68e2cb5b6",
+  "web-app/property-rent-manager-original.html": "2bd7372fd0fa9c935648289455f4dcfd9bb97012249a9f837582087300c32c6e",
+  "web-app/index.html": "909a11059515408ee0a7655c5d98c9a55f9fc8128f22dc90d4a43ad3cb699b47",
+  "web-app/property-rent-manager-backup.html": "2bd7372fd0fa9c935648289455f4dcfd9bb97012249a9f837582087300c32c6e",
+  "cloudflare-worker/src/index.ts": "efe17c46afdb98b0308b6d99a359222d4490c1febccedc7ef07a467bb4828830",
+  "cloudflare-worker/public/logo.png": "1367306bed4267575eee27b44053307e8a2d1aa7fc79ecdd6e9eb5e68e2cb5b6",
+  "cloudflare-worker/public/index.html": "909a11059515408ee0a7655c5d98c9a55f9fc8128f22dc90d4a43ad3cb699b47",
+  "android-project/GlossyHomeAndroid/settings.gradle": "6d7eeccf43b960eafd7a6b04212ab40a00d73183855d8b472f2d8ce2b9adc32c",
+  "android-project/GlossyHomeAndroid/README.md": "f725e6ac2e996e901362d2515b6814c8ab53966a4ab8a1e1f2e1f534f85963cf",
+  "android-project/GlossyHomeAndroid/gradle.properties": "4d4c82226865844bdc85391d907a383da4a35d3a3f5348985d5ec3997ab932fe",
+  "android-project/GlossyHomeAndroid/build.gradle": "c3c0cf04da0fc239f391c774554d97d890018ab6e37e87cc62f6070d0c8c9909",
+  "android-project/GlossyHomeAndroid/app/build.gradle": "077e96bb09479f5c5f436814978f6c401f98935bf86989c2a90e85da41c1fe21",
+  "android-project/GlossyHomeAndroid/app/src/main/AndroidManifest.xml": "c5fbb726e6ae67a1de74a24564ee111c22f27387a3cfd97b0aeb6646170e2d9f",
+  "android-project/GlossyHomeAndroid/app/src/main/res/drawable/glossy_home_icon.png": "7952ad799e70333b358a04afbb2ab8c19f92035e6d12c80873331b954632bdad",
+  "android-project/GlossyHomeAndroid/app/src/main/res/values/styles.xml": "67091b69ffd0005d65c18b38a0fa3e559c6f7b9d0d796c735fb8626f9870e597",
+  "android-project/GlossyHomeAndroid/app/src/main/java/com/glossyhome/app/MainActivity.java": "fb2ee50b23299e94e7364008e6988c41d4b02bc33533d69ab94c0c64b2f81618"
 }

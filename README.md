@@ -1,33 +1,16 @@
-# Glossy Home — Real Estate Management Platform
+# Glossy Home Property Rent Manager — Final Package
 
-## Included
-- `web-app/index.html`: mobile-ready frontend based on the supplied Property Rent Manager HTML, now with Admin Login and cloud sync client.
-- `web-app/property-rent-manager-original.html`: preserved untouched original source.
-- `cloudflare-worker/`: Cloudflare Worker API, static assets, Admin ID/password authentication, signed 12-hour token, Neon state sync, and deployment configuration.
-- `neon-schema.sql`: additive Neon schema (creates one new table only).
-- `android-project/GlossyHomeAndroid/`: Android Studio WebView project supplied by the user.
-- `FORMULAS-AND-FEATURES.md`, `SAFETY-NOTES.md`, `DEPLOY-CHECKLIST-BN.md`.
+Phone-first property rent dashboard. The public view is read-only; only an authenticated Admin can change data. Cloudflare Worker serves the app and API; Neon stores the shared app state.
 
-## Implemented in the code bundle
-- Server-side Admin ID/password verification using Cloudflare Worker secrets.
-- Signed short-lived admin tokens.
-- Authenticated read/write API for the full app state in Neon PostgreSQL.
-- Frontend sign-in gate and cloud status/sync/logout controls.
-- Local-first saves: existing localStorage remains and cloud sync follows after save.
-- First cloud initialization is guarded: meaningful data on the current device is copied to an empty cloud; starter-only data requires explicit confirmation.
-- Existing rent-manager forms, reports, exports, and formulas are retained from the supplied HTML source.
+## Before deployment
+1. Configure Cloudflare Worker secrets: `DATABASE_URL`, `ADMIN_ID`, `ADMIN_PASSWORD`, `ADMIN_TOKEN_SECRET` (at least 32 characters). Never commit real secrets.
+2. Run `neon-schema.sql` once in the intended Neon database.
+3. From `cloudflare-worker`, run `npm install`, `npm run typecheck`, then `npm run deploy`.
+4. Check `/api/health`, then `/api/v1/public-data`. If no cloud row exists, sign in as Admin on the device containing the authoritative records and initialize the first cloud copy.
+5. Keep a downloaded JSON backup before choosing any cloud/device conflict resolution.
 
-## Not yet completed
-- No code has been deployed to the user's GitHub/Cloudflare/Neon accounts from this environment.
-- Existing mobile data has not been read or migrated by this package.
-- R2-based listing photo storage, conflict resolution across simultaneous devices, rate limiting, automated tests, and a production release review remain future hardening tasks.
+## Important data note
+The 9 own-flat labels and example rents in this package are starter defaults only. Actual collection percentages are calculated from recorded payments; blank building owner/rent fields are not treated as real income. Existing localStorage data is retained and normalized rather than reset.
 
-See `DEPLOY-CHECKLIST-BN.md` before deployment. Do not commit real secrets or JSON data backups.
-
-
-## Version 3: Premium Dashboard & Projects
-- Dashboard now uses colourful, responsive flat cards with building name, room counts, monthly collection percentage, collected rent, rent balance and owner name.
-- Tapping a flat card opens room-by-room tenant, rent, paid amount and balance details plus Wi-Fi, ADDC, Agent Commission, Maintenance, and total costs.
-- Projects page groups flats by Building / Project Name and shows collection progress, building totals, owner names, owner monthly cost/rent, tenant rent, collected and outstanding balance.
-- Existing localStorage key and data model remain compatible; new fields (`buildingName`, `ownerName`, `ownerRent`) are optional and old data is not automatically replaced.
-- Existing flats must be assigned a Building / Project Name through Edit Flat to group correctly. The project page labels unassigned records rather than guessing which building they belong to.
+## Exports
+Monthly report HTML and print-to-PDF are supported. Direct JPG export depends on browser capture support; use a device screenshot if direct capture is unavailable.

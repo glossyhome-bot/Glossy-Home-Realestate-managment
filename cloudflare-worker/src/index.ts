@@ -78,11 +78,23 @@ export default {
     if (request.headers.get("Origin") && !origin) return json({ error:"Cross-origin request denied." }, 403);
     try {
       if (url.pathname === "/api/health" && request.method === "GET") return json({ ok:true, service:"glossy-home-api", databaseConfigured:!!env.DATABASE_URL, authConfigured:!!(env.ADMIN_ID && env.ADMIN_PASSWORD && env.ADMIN_TOKEN_SECRET && env.ADMIN_TOKEN_SECRET.length >= 32) },200,origin);
-      if (!env.DATABASE_URL || !env.ADMIN_ID || !env.ADMIN_PASSWORD || !env.ADMIN_TOKEN_SECRET || env.ADMIN_TOKEN_SECRET.length < 32) return json({ error:"Service secrets are not configured correctly." },503,origin);
+      if (!env.DATABASE_URL) return json({ error:"Database is not configured." },503,origin);
       if (url.pathname === "/api/auth/login" && request.method === "POST") {
+        if (!env.ADMIN_ID || !env.ADMIN_PASSWORD || !env.ADMIN_TOKEN_SECRET || env.ADMIN_TOKEN_SECRET.length < 32) return json({ error:"Admin authentication secrets are not configured correctly." },503,origin);
         const body = await readJson(request);
         if (typeof body.adminId !== "string" || typeof body.password !== "string" || !constantTimeEqual(body.adminId, env.ADMIN_ID) || !constantTimeEqual(body.password, env.ADMIN_PASSWORD)) return json({ error:"Invalid Admin ID or password." },401,origin);
         return json({ token: await createToken(env.ADMIN_ID, env.ADMIN_TOKEN_SECRET), expiresIn: TOKEN_TTL_SECONDS },200,origin);
+      }
+      if (url.pathname === "/api/v1/public-data" && request.method === "GET") {
+        if (!env.DATABASE_URL) return json({ exists:false, data:null, publicReadConfigured:false },200,origin);
+        const sql = neon(env.DATABASE_URL);
+        const rows = await sql`SELECT data, updated_at FROM glossy_home_app_state WHERE id = 'default' LIMIT 1`;
+        if (!rows.length) return json({ exists:false, data:null, publicReadConfigured:true },200,origin);
+        const publicData = rows[0].data as any;
+        if (publicData && Array.isArray(publicData.tenants)) publicData.tenants = publicData.tenants.map((t:any) => ({ ...t, phone:"", email:"", notes:"", deposit:0 }));
+        if (publicData && Array.isArray(publicData.payments)) publicData.payments = publicData.payments.map((p:any) => ({ ...p, notes:"" }));
+        if (publicData && Array.isArray(publicData.flats)) publicData.flats = publicData.flats.map((f:any) => ({ ...f, ownerPhone:"", ownerEmail:"", notes:"", rooms:Array.isArray(f.rooms)?f.rooms.map((r:any)=>({...r,notes:""})):f.rooms }));
+        return json({ exists:true, data:publicData, updatedAt:rows[0].updated_at, publicReadConfigured:true },200,origin);
       }
       if (url.pathname === "/api/v1/data" && (request.method === "GET" || request.method === "PUT")) {
         const user = await requireAdmin(request, env);
